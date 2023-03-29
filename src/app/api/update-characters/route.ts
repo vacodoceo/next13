@@ -3,7 +3,7 @@ import { getSheetCharacters } from "./get-sheet-characters";
 import { getToken } from "./get-token";
 import { storeCharactersLevel } from "./store-characters-level";
 
-export async function POST(request: Request) {
+export async function POST() {
   const token = await getToken();
   const sheetCharacters = await getSheetCharacters();
 
