@@ -3,6 +3,8 @@ name: Trigger update characters
 on:
   schedule:
     - cron: "0 * * * *"
+  workflow_dispatch:
+
 jobs:
   build:
     name: Trigger Site Rebuild
