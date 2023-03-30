@@ -1,6 +1,12 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
-export const getSheetCharacters = async () => {
+export type SheetCharacter = {
+  levelerName: string;
+  characterName: string;
+  realm: string;
+};
+
+export const getSheetCharacters = async (): Promise<SheetCharacter[]> => {
   const doc = new GoogleSpreadsheet(
     "1SyaVjUQ_-5Il0UiW8uHoXYulXe8y0zPtt7PGzMLcLuM"
   );

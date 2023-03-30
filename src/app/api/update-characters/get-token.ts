@@ -1,19 +1,18 @@
-export const getToken = async () => {
-  const { BLIZZARD_CLIENT_ID, BLIZZARD_CLIENT_SECRET } = process.env;
-  const authString = Buffer.from(
-    `${BLIZZARD_CLIENT_ID}:${BLIZZARD_CLIENT_SECRET}`
-  ).toString("base64");
+import { ClientCredentials } from "simple-oauth2";
 
-  const response = await fetch("https://us.battle.net/oauth/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${authString}`,
-    },
-    body: "grant_type=client_credentials",
-  });
+const client = new ClientCredentials({
+  client: {
+    id: process.env.BLIZZARD_CLIENT_ID as string,
+    secret: process.env.BLIZZARD_CLIENT_SECRET as string,
+  },
+  auth: {
+    tokenHost: process.env.OAUTH_TOKEN_HOST || "https://us.battle.net",
+  },
+});
 
-  const { access_token } = await response.json();
+export const getToken = async (): Promise<string> => {
+  const accessToken = await client.getToken({ scope: "wow.profile" });
+  const access_token = accessToken.token.access_token;
 
-  return access_token;
+  return access_token as string;
 };

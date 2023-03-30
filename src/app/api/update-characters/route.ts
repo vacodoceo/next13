@@ -1,22 +1,21 @@
-import { getBlizzardCharacter } from "./get-blizzard-character";
+import { getCharacters } from "./get-characters";
 import { getSheetCharacters } from "./get-sheet-characters";
 import { getToken } from "./get-token";
-import { storeCharactersLevel } from "./store-characters-level";
+import { storeCharacters } from "./store-characters";
+import { storeCharactersLevelRecord } from "./store-characters-level-record";
 
 export async function POST() {
   const token = await getToken();
   const sheetCharacters = await getSheetCharacters();
+  const characters = await getCharacters({ sheetCharacters, token });
 
-  const blizzardCharacters = await Promise.all(
-    sheetCharacters.map(({ characterName, realm }) =>
-      getBlizzardCharacter({ token, characterName, realm })
-    )
-  );
-  const filteredBlizzardCharacters = blizzardCharacters.filter(
-    (character) => character.code !== 404
-  );
+  const storedRecordsPromise = storeCharactersLevelRecord(characters);
+  const storedCharactersPromise = storeCharacters(characters);
 
-  const storedRecords = await storeCharactersLevel(filteredBlizzardCharacters);
+  const [storedRecords, storedCharacters] = await Promise.all([
+    storedRecordsPromise,
+    storedCharactersPromise,
+  ]);
 
-  return new Response(JSON.stringify({ storedRecords }));
+  return new Response(JSON.stringify({ storedRecords, storedCharacters }));
 }
