@@ -15,7 +15,7 @@ export const storeCharacters = async (characters: Character[]) => {
             class
             completedQuests
             faction
-            insetImageURL
+            imageURL
             level
             levelerName
             name
@@ -30,7 +30,7 @@ export const storeCharacters = async (characters: Character[]) => {
           class
           completedQuests
           faction
-          insetImageURL
+          imageURL
           level
           levelerName
           name

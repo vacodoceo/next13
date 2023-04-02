@@ -8,5 +8,5 @@ export type Character = {
   class: string;
   name: string;
   completedQuests: number;
-  insetImageURL: string;
+  imageURL: string;
 };

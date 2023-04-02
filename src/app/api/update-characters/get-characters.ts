@@ -80,7 +80,7 @@ const getCharacter = async ({
     class: profile.character_class.name,
     name: profile.name,
     completedQuests: quests.length,
-    insetImageURL: media.inset,
+    imageURL: media.main,
   };
 };
 
