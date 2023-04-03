@@ -26,7 +26,7 @@ export const CharacterGrid = ({
   }, [characters, searchValue]);
 
   return (
-    <div className="grid grid-cols-2 gap-[12px] px-2 pb-8 sm:gap-4 sm:px-4 md:grid-cols-3 md:gap-6">
+    <div className="grid grid-cols-2 gap-[12px] p-2 pb-8 sm:gap-4 sm:p-4 md:grid-cols-3 md:gap-6">
       {filteredCharacters.map((character) => (
         <CharacterCard key={character.id} character={character} />
       ))}

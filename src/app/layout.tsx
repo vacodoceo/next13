@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 
 export const metadata = {
   title: "WoW Level Tracker ",
@@ -22,6 +23,15 @@ export default function RootLayout({
           </span>
         </nav>
         {children}
+        <footer className="flex items-center justify-center p-4 text-gray-300">
+          Made with 🤍 by
+          <Link
+            className="ml-1 underline"
+            href="https://github.com/vacodoceo/next13"
+          >
+            Verner
+          </Link>
+        </footer>
       </body>
     </html>
   );
