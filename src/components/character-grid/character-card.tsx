@@ -17,7 +17,7 @@ export const CharacterCard = ({
   );
 
   return (
-    <div className="cursor-pointer overflow-hidden rounded-xl bg-[#272a30] transition-all hover:scale-105">
+    <div className="overflow-hidden rounded-xl bg-[#272a30] transition-all hover:scale-105">
       <div className="relative h-28 sm:h-32">
         <Image
           src={imageURL}
