@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import { formatClassName } from "@/helpers/format-character-name";
 import { DateTime } from "luxon";
 import { times } from "lodash-es";
+import { useMediaQuery } from "react-responsive";
 
 const fullConfig = resolveConfig(tailwindConfig);
 
@@ -23,6 +24,8 @@ export const CharacterLevelChart = ({
 }: {
   character: CharacterWithLevelRecords;
 }) => {
+  const isBigScreen = useMediaQuery({ query: "(min-width: 512px)" });
+
   const formattedClass = useMemo(
     () => formatClassName(character.class),
     [character.class]
@@ -42,20 +45,16 @@ export const CharacterLevelChart = ({
     DateTime.now()
       .minus({ days: index * 2 })
       .valueOf()
-  );
+  ).filter((tick, i) => isBigScreen || i % 2 === 0);
 
   return (
-    <div className="h-40 w-full">
+    <div className="h-44 w-full p-2 sm:px-4">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
-          width={500}
-          height={300}
           data={data}
           margin={{
-            top: 5,
-            right: 30,
-            bottom: 5,
-            left: -22,
+            right: 8,
+            left: -36,
           }}
         >
           <XAxis
@@ -71,7 +70,10 @@ export const CharacterLevelChart = ({
           />
           <YAxis dataKey="level" domain={[0, 60]} tick={{ fontSize: 12 }} />
           {/* @ts-ignore */}
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip
+            content={<CustomTooltip />}
+            allowEscapeViewBox={{ x: true, y: true }}
+          />
           <Line
             type="monotoneX"
             dataKey="level"

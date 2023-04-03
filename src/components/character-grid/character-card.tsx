@@ -17,7 +17,7 @@ export const CharacterCard = ({
   );
 
   return (
-    <div className="overflow-hidden rounded-xl bg-[#272a30] transition-all hover:scale-105">
+    <div className="flex flex-col overflow-hidden rounded-xl bg-[#272a30] transition-all">
       <div className="relative h-28 sm:h-32">
         <Image
           src={imageURL}
@@ -28,17 +28,19 @@ export const CharacterCard = ({
         />
         <div className="absolute bottom-0 h-1/2 w-full bg-transparent bg-gradient-to-b from-transparent to-[#272a30]" />
       </div>
-      <div className="p-4">
-        <div className="flex flex-wrap justify-between gap-x-1 font-semibold text-white">
-          <span className="sm:tracking-wide">{name}</span>
-          <span>{level}</span>
+
+      <div className="flex flex-1 flex-col justify-between">
+        <div className="px-2 sm:p-4">
+          <div className="flex flex-wrap justify-between gap-x-1 font-semibold text-white">
+            <span className="sm:tracking-wide">{name}</span>
+            <span>{level}</span>
+          </div>
+          <div className="flex justify-between gap-x-1 text-sm text-gray-400">
+            <span>{levelerName}</span>
+            <span className={`text-${formattedClass}`}>{character.class}</span>
+          </div>
         </div>
-        <div className="flex justify-between gap-x-1 text-sm text-gray-400">
-          <span>{levelerName}</span>
-          <span className={`text-${formattedClass}`}>{character.class}</span>
-        </div>
-      </div>
-      <div>
+
         <CharacterLevelChart character={character} />
       </div>
     </div>

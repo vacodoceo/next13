@@ -10,7 +10,7 @@ export const SearchMenu = () => {
   const isBigScreen = useMediaQuery({ query: "(min-width: 512px)" });
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full px-2 sm:px-4">
       <label className="relative mx-auto flex h-14 w-full max-w-xl overflow-hidden rounded-lg">
         <input
           id="search-input"
