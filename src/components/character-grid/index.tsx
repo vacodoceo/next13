@@ -20,13 +20,13 @@ export const CharacterGrid = ({
       ];
 
       return matchers
-        .map((matcher) => matcher.includes(searchValue))
+        .map((matcher) => matcher.includes(searchValue.toLowerCase()))
         .some(Boolean);
     });
   }, [characters, searchValue]);
 
   return (
-    <div className="grid grid-cols-2 gap-4 px-2 pb-8 sm:gap-4 sm:px-4 md:grid-cols-3 md:gap-6">
+    <div className="grid grid-cols-2 gap-[12px] px-2 pb-8 sm:gap-4 sm:px-4 md:grid-cols-3 md:gap-6">
       {filteredCharacters.map((character) => (
         <CharacterCard key={character.id} character={character} />
       ))}

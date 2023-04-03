@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .recharts-tooltip-wrapper {
-  @apply outline-0;
+  @apply z-10 outline-0;
 }

@@ -17,8 +17,8 @@ export const CharacterCard = ({
   );
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl bg-[#272a30] transition-all">
-      <div className="relative h-28 sm:h-32">
+    <div className="flex flex-col rounded-xl bg-[#272a30] transition-all">
+      <div className="relative h-28 overflow-hidden rounded-t-xl sm:h-32">
         <Image
           src={imageURL}
           fill

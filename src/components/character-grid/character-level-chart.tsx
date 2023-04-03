@@ -45,7 +45,7 @@ export const CharacterLevelChart = ({
     DateTime.now()
       .minus({ days: index * 2 })
       .valueOf()
-  ).filter((tick, i) => isBigScreen || i % 2 === 0);
+  ).filter((_, i) => isBigScreen || i % 2 === 0);
 
   return (
     <div className="h-44 w-full p-2 sm:px-4">
@@ -69,10 +69,9 @@ export const CharacterLevelChart = ({
             ticks={xAxisTicks}
           />
           <YAxis dataKey="level" domain={[0, 60]} tick={{ fontSize: 12 }} />
-          {/* @ts-ignore */}
           <Tooltip
+            // @ts-ignore
             content={<CustomTooltip />}
-            allowEscapeViewBox={{ x: true, y: true }}
           />
           <Line
             type="monotoneX"
@@ -104,8 +103,9 @@ const CustomTooltip = ({
     const formattedTimestamp = timestamp.toFormat("MMMM dd, HH:mm");
 
     return (
-      <div className="rounded-md bg-white p-2 text-base text-gray-800">
-        <p className="text-xs">{`${formattedTimestamp} - Level ${payload[0].value}`}</p>
+      <div className="rounded-md bg-white p-2 text-center text-base text-gray-800">
+        <p className="text-xs">{formattedTimestamp}</p>
+        <p className="text-xs">Level {payload[0].value}</p>
       </div>
     );
   }
