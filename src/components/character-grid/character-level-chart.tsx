@@ -103,7 +103,7 @@ const CustomTooltip = ({
     const formattedTimestamp = timestamp.toFormat("MMMM dd, HH:mm");
 
     return (
-      <div className="rounded-md bg-white p-2 text-center text-base text-gray-800">
+      <div className="rounded-md bg-white bg-opacity-80 p-2 text-center text-base text-gray-800">
         <p className="text-xs">{formattedTimestamp}</p>
         <p className="text-xs">Level {payload[0].value}</p>
       </div>
