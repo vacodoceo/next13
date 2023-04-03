@@ -44,8 +44,6 @@ export const CharacterLevelChart = ({
       .valueOf()
   );
 
-  console.log(xAxisTicks);
-
   return (
     <div className="h-40 w-full">
       <ResponsiveContainer width="100%" height="100%">
