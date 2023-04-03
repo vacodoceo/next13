@@ -8,18 +8,10 @@ export class NHostClient {
   public static async getInstance(): Promise<LibNHostClient> {
     if (!NHostClient.instance) {
       const nHostClient = new LibNHostClient({
+        adminSecret: process.env.NHOST_ADMIN_SECRET as string,
         subdomain: process.env.NHOST_SUBDOMAIN as string,
         region: process.env.NHOST_REGION as string,
       });
-
-      const signInResponse = await nHostClient.auth.signIn({
-        email: process.env.NHOST_CLIENT_EMAIL as string,
-        password: process.env.NHOST_CLIENT_PASSWORD as string,
-      });
-
-      if (signInResponse.error) {
-        throw signInResponse.error;
-      }
 
       NHostClient.instance = nHostClient;
     }
