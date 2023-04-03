@@ -10,3 +10,12 @@ export type Character = {
   completedQuests: number;
   imageURL: string;
 };
+
+export type LevelRecord = {
+  level: number;
+  timestamp: string;
+};
+
+export type CharacterWithLevelRecords = Character & {
+  LevelRecords: LevelRecord[];
+};
