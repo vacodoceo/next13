@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Trigger Site Rebuild
+    name: Trigger update characters
     runs-on: ubuntu-latest
     steps:
       - name: cURL request
