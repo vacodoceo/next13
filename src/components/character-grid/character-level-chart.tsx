@@ -33,7 +33,9 @@ export const CharacterLevelChart = ({
 
   const data = character.LevelRecords.map((levelRecord) => ({
     level: levelRecord.level,
-    timestamp: DateTime.fromISO(levelRecord.timestamp).valueOf(),
+    timestamp: DateTime.fromISO(levelRecord.timestamp, {
+      zone: "utc",
+    }).valueOf(),
   }));
 
   const xAxisDomain = [

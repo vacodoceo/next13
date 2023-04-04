@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["render.worldofwarcraft.com"],
+    domains: ["render.worldofwarcraft.com", "cataas.com"],
   },
 };
 

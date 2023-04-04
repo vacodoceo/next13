@@ -8,7 +8,7 @@ export type Character = {
   class: string;
   name: string;
   completedQuests: number;
-  imageURL: string;
+  imageURL: string | null;
 };
 
 export type LevelRecord = {

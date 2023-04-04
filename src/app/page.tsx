@@ -12,7 +12,10 @@ async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
 
   const CHARACTERS = gql`
     query GetCharacters {
-      Characters(order_by: { level: desc }) {
+      Characters(
+        order_by: { level: desc }
+      ) # where: { imageURL: { _is_null: false } }
+      {
         LevelRecords {
           timestamp
           level

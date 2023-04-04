@@ -45,14 +45,18 @@ const getBlizzardCharacterMedia = async ({
   realmSlug: string;
   token: string;
 }) => {
-  const url = `https://us.api.blizzard.com/profile/wow/character/${realmSlug}/${lowerCaseCharacterName}/character-media?namespace=profile-us&locale=en_US&access_token=${token}`;
-  const response = await axios.get(url);
-  const body = response.data;
-  const media = Object.fromEntries(
-    body.assets.map((asset: any) => [asset.key, asset.value])
-  );
+  try {
+    const url = `https://us.api.blizzard.com/profile/wow/character/${realmSlug}/${lowerCaseCharacterName}/character-media?namespace=profile-us&locale=en_US&access_token=${token}`;
+    const response = await axios.get(url);
+    const body = response.data;
+    const media = Object.fromEntries(
+      body.assets.map((asset: any) => [asset.key, asset.value])
+    );
 
-  return media;
+    return media;
+  } catch (error) {
+    return undefined;
+  }
 };
 
 const getCharacter = async ({
@@ -80,7 +84,7 @@ const getCharacter = async ({
     class: profile.character_class.name,
     name: profile.name,
     completedQuests: quests.length,
-    imageURL: media.main,
+    imageURL: media?.main,
   };
 };
 

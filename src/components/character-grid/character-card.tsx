@@ -20,7 +20,7 @@ export const CharacterCard = ({
     <div className="relative flex flex-col overflow-hidden rounded-xl bg-[#272a30] transition-all">
       <div className="relative h-28 rounded-t-xl sm:h-32">
         <Image
-          src={imageURL}
+          src={imageURL || `https://cataas.com/cat`}
           fill
           className="top-[20%] object-cover object-center"
           alt=""
