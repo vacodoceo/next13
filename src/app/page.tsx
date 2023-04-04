@@ -1,8 +1,9 @@
 import { CharacterGrid } from "@/components/character-grid";
 import { SearchMenu } from "@/components/search-menu";
 import SearchProvider from "@/context/search-provider";
-import { sortCharactersByAverageLeveling } from "@/helpers/sort-characters-by-average-leveling";
+import { getCharacterAverageRecentLeveling } from "@/helpers/get-character-average-recent-leveling";
 import { gql } from "@apollo/client";
+import { sortBy } from "lodash-es";
 import { NHostClient } from "./api/clients/nhost-client";
 import { CharacterWithLevelRecords } from "./api/update-characters/types/character";
 
@@ -36,7 +37,18 @@ async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
   const { data } = response;
   const { Characters: characters } = data;
 
-  return sortCharactersByAverageLeveling(characters);
+  const characterWithLevelingData = characters.map(
+    (character: CharacterWithLevelRecords) => {
+      const levelingScore = getCharacterAverageRecentLeveling(character);
+
+      return {
+        ...character,
+        levelingScore,
+      };
+    }
+  );
+
+  return sortBy(characterWithLevelingData, ["levelingScore"]).reverse();
 }
 
 const Home = async () => {

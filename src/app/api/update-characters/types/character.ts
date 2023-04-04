@@ -18,4 +18,5 @@ export type LevelRecord = {
 
 export type CharacterWithLevelRecords = Character & {
   LevelRecords: LevelRecord[];
+  levelingScore: number;
 };

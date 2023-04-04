@@ -17,8 +17,8 @@ export const CharacterCard = ({
   );
 
   return (
-    <div className="flex flex-col rounded-xl bg-[#272a30] transition-all">
-      <div className="relative h-28 overflow-hidden rounded-t-xl sm:h-32">
+    <div className="relative flex flex-col overflow-hidden rounded-xl bg-[#272a30] transition-all">
+      <div className="relative h-28 rounded-t-xl sm:h-32">
         <Image
           src={imageURL}
           fill
@@ -43,6 +43,15 @@ export const CharacterCard = ({
 
         <CharacterLevelChart character={character} />
       </div>
+
+      {character.levelingScore > 5 && (
+        <div className="absolute right-0 top-0 flex flex-col items-center p-1 sm:p-2">
+          <span className="inline-flex items-center rounded-full bg-red-100 px-2 py-0.5 text-sm font-medium text-red-800 sm:px-3">
+            🔥
+            <span className="ml-1 hidden sm:inline">HOT</span>
+          </span>
+        </div>
+      )}
     </div>
   );
 };
