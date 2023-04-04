@@ -15,7 +15,7 @@ export const SearchMenu = () => {
         <input
           id="search-input"
           type="text"
-          className="w-full bg-[#272a30] px-14 text-gray-300 transition focus:bg-white focus:text-gray-600"
+          className="w-full bg-[#272a30] px-14 text-gray-300 outline-none transition focus:bg-white focus:text-gray-600"
           placeholder={
             isBigScreen
               ? "Search by character name, leveler name, etc..."
