@@ -7,15 +7,16 @@ import { sortBy } from "lodash-es";
 import { NHostClient } from "./api/clients/nhost-client";
 import { CharacterWithLevelRecords } from "./api/update-characters/types/character";
 
+export const revalidate = 60;
+
 async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
   const nHostClient = await NHostClient.getInstance();
 
   const CHARACTERS = gql`
     query GetCharacters {
       Characters(
-        order_by: { level: desc }
-      ) # where: { imageURL: { _is_null: false } }
-      {
+        order_by: { level: desc } # where: { imageURL: { _is_null: false } }
+      ) {
         LevelRecords {
           timestamp
           level
