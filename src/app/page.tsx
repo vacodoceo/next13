@@ -7,7 +7,7 @@ import { sortBy } from "lodash-es";
 import { NHostClient } from "./api/clients/nhost-client";
 import { CharacterWithLevelRecords } from "./api/update-characters/types/character";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
   const nHostClient = await NHostClient.getInstance();
