@@ -12,6 +12,8 @@ export const dynamic = "force-dynamic";
 async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
   const nHostClient = await NHostClient.getInstance();
 
+  console.log(new Date());
+
   const CHARACTERS = gql`
     query GetCharacters {
       Characters(order_by: { level: desc }) {
@@ -34,7 +36,7 @@ async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
   `;
 
   const response = await nHostClient.graphql.request(CHARACTERS);
-  console.info({ response });
+  console.info(response.data.Characters.length);
 
   const { data } = response;
   const { Characters: characters } = data;

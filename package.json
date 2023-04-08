@@ -11,7 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.10",
     "@heroicons/react": "^2.0.17",
-    "@nhost/nhost-js": "^2.1.1",
+    "@nhost/nhost-js": "^2.2.0",
     "@types/lodash-es": "^4.17.7",
     "@types/luxon": "^3.2.0",
     "@types/node": "18.15.0",
