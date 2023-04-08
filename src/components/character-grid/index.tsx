@@ -5,8 +5,6 @@ import { SearchContext } from "@/context/search-provider";
 import { useContext, useMemo } from "react";
 import { CharacterCard } from "./character-card";
 
-export const validate = "force-dynamic";
-
 export const CharacterGrid = ({
   characters,
 }: {
