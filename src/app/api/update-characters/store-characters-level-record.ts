@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
-import { NHostClient } from "../clients/nhost-client";
+import { GraphQLClient } from "../../clients/graphql-client";
 import { Character } from "./types/character";
 
 export const storeCharactersLevelRecord = async (characters: Character[]) => {
-  const nHostClient = await NHostClient.getInstance();
+  const graphQLClient = await GraphQLClient.getInstance();
 
   const levelRecords = characters.map((character) => ({
     characterId: character.id,
@@ -24,10 +24,10 @@ export const storeCharactersLevelRecord = async (characters: Character[]) => {
     }
   `;
 
-  const storedLevelRecord = await nHostClient.graphql.request(
-    INSERT_LEVEL_RECORDS,
-    { levelRecords }
-  );
+  const storedLevelRecord = await graphQLClient.mutate({
+    mutation: INSERT_LEVEL_RECORDS,
+    variables: { levelRecords },
+  });
 
   return storedLevelRecord;
 };

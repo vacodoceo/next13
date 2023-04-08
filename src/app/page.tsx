@@ -4,19 +4,17 @@ import SearchProvider from "@/context/search-provider";
 import { getCharacterAverageRecentLeveling } from "@/helpers/get-character-average-recent-leveling";
 import { gql } from "@apollo/client";
 import { sortBy } from "lodash-es";
-import { NHostClient } from "./api/clients/nhost-client";
+import { GraphQLClient } from "./clients/graphql-client";
 import { CharacterWithLevelRecords } from "./api/update-characters/types/character";
 
 export const dynamic = "force-dynamic";
 
 async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
-  const nHostClient = await NHostClient.getInstance();
-
-  console.log(new Date());
+  const graphQLClient = await GraphQLClient.getInstance();
 
   const CHARACTERS = gql`
     query GetCharacters {
-      Characters(order_by: { level: desc }) {
+      Characters {
         LevelRecords {
           timestamp
           level
@@ -35,10 +33,8 @@ async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
     }
   `;
 
-  const response = await nHostClient.graphql.request(CHARACTERS);
-  console.info(response.data.Characters.length);
+  const { data } = await graphQLClient.query({ query: CHARACTERS });
 
-  const { data } = response;
   const { Characters: characters } = data;
 
   const characterWithLevelingData = characters.map(
@@ -47,6 +43,7 @@ async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
 
       return {
         ...character,
+        LevelRecords: sortBy(character.LevelRecords, ["timestamp"]).reverse(),
         levelingScore,
       };
     }
