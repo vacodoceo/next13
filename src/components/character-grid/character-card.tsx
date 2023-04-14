@@ -44,7 +44,7 @@ export const CharacterCard = ({
         <CharacterLevelChart character={character} />
       </div>
 
-      {character.levelingScore > 5 && (
+      {character.levelingScore > 3 && (
         <div className="absolute right-0 top-0 flex flex-col items-center p-1 sm:p-2">
           <span className="inline-flex items-center rounded-full bg-red-100 px-2 py-0.5 text-sm font-medium text-red-800 sm:px-3">
             🔥
