@@ -7,7 +7,7 @@ import { sortBy } from "lodash-es";
 import { GraphQLClient } from "./clients/graphql-client";
 import { CharacterWithLevelRecords } from "./api/update-characters/types/character";
 
-export const revalidate = 600;
+export const revalidate = 0;
 
 async function getCharacters(): Promise<CharacterWithLevelRecords[]> {
   const graphQLClient = await GraphQLClient.getInstance();
